@@ -24,6 +24,8 @@ jobs:
     runs-on: ubuntu-latest
     # if:
     steps:
+      - name: Json do giuthub
+        run: echo ${{toJson(github.event.pull_request)}}
       - name: Assigna automaticamente o time de hatts no pr
         run: |
           echo ${{inputs.repository}}
