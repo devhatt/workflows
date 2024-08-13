@@ -6,9 +6,9 @@ on:
 jobs:
   assign-on-issue:
     runs-on: ubuntu-latest
+    if: ${{contains(github.event.comment.body, 'EU QUERO!!!')}}
     steps:
       - name: Check for "EU QUERO!!!" comment
-        if: ${{contains(github.event.comment.body, 'EU QUERO!!!')}}
         run: |
           # Extract the commenter's username
           commenter=$(jq -r .comment.user.login $GITHUB_EVENT_PATH)
@@ -22,7 +22,7 @@ jobs:
 
   assing-hatters-on-pr:
     runs-on: ubuntu-latest
-    # if:
+    if: ${{github.event_name == "pull_request"}}
     steps:
       - name: Json do giuthub
         run: echo ${{toJson(github.event.pull_request)}}
