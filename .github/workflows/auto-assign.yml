@@ -22,7 +22,7 @@ jobs:
 
   assing-hatters-on-pr:
     runs-on: ubuntu-latest
-    if: ${{github.event_name == "pull_request"}}
+    if: ${{github.event_name == 'pull_request'}}
     steps:
       - name: Json do giuthub
         run: echo ${{toJson(github.event.pull_request)}}
