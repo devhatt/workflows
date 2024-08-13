@@ -26,10 +26,6 @@ jobs:
     steps:
       - name: Assigna automaticamente o time de hatts no pr
         run: |
-          echo ${{inputs.repository}}
-
-          echo ${{inputs.pr-number}}
-
           curl -L \
             -X POST \
             -H "Accept: application/vnd.github+json" \
