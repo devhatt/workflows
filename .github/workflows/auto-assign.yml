@@ -38,6 +38,9 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{github.event_name == 'pull_request'}}
     steps:
+      - name: Checkout
+        uses: actions/checkout@v4.1.7
+
       - name: Assigna o criador do pr no proprio pr
         run: gh pr edit ${{ github.event.pull_request.number }} --add-assignee ${{ github.actor }}
         env:
