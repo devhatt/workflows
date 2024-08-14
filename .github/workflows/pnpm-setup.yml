@@ -1,0 +1,36 @@
+name: Pnpm Setup
+
+on:
+  workflow_call:
+    inputs:
+      pnpm-version:
+        type: string
+        default: 8
+        required: true
+        description: Define pnpm version
+      node-version:
+        type: string
+        default: 20
+        required: true
+        description: Define a versão do Node
+
+jobs:
+  install:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: ${ { inputs.pnpm-version } }
+          run_install: false
+
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${ { inputs.node-version } }
+          cache: "pnpm"
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile -r
