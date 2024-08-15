@@ -24,8 +24,8 @@ jobs:
           pnpm-version: ${{inputs.pnpm-version}}
           node-version: ${{inputs.node-version}}
 
-      # - name: Install Playwright Browsers
-      #  run: pnpm dlx playwright install --with-deps
+      - name: Install Playwright Browsers
+        run: pnpm exec playwright install  --with-deps
 
       - name: Run Playwright tests
         run: pnpm playwright test --pass-with-no-tests
