@@ -19,7 +19,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Setup Pnpm And Node
-        uses: devhatt/workflows/.github/workflows/playwright-tests.yml@main
+        uses: devhatt/workflows/.github/actions/pnpm-setup@main
         with:
           pnpm-version: ${{inputs.pnpm-version}}
           node-version: ${{inputs.node-version}}
