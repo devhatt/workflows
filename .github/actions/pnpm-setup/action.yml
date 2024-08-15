@@ -27,6 +27,10 @@ runs:
         node-version: ${{ inputs.node-version }}
         cache: "pnpm"
 
+    - name: Setup .env
+      shell: bash
+      run: node setup.mjs
+
     - name: Install dependencies
       shell: bash
       run: pnpm install --frozen-lockfile -r
