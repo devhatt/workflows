@@ -18,20 +18,11 @@ jobs:
     timeout-minutes: 60
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: pnpm/action-setup@v4
+      - name: Setup Pnpm And Node
+        uses: ./github/actions/pnpm-setup.yml
         with:
-          version: ${{inputs.pnpm-version}}
-          run_install: false
-
-      - name: Install Node.js
-        uses: actions/setup-node@v4
-        with:
+          pnpm-version: ${{inputs.pnpm-version}}
           node-version: ${{inputs.node-version}}
-          cache: "pnpm"
-
-      - name: Install dependencies
-        run: pnpm install --frozen-lockfile -r
 
       - name: Install Playwright Browsers
         run: pnpm dlx playwright install --with-deps
