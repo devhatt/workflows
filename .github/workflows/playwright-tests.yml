@@ -28,7 +28,7 @@ jobs:
         run: pnpm dlx playwright install --with-deps
 
       - name: Run Playwright tests
-        run: pnpm dlx playwright test --pass-with-no-tests
+        run: pnpm playwright test --pass-with-no-tests
 
       - uses: actions/upload-artifact@v4
         if: ${{ !cancelled() }}
