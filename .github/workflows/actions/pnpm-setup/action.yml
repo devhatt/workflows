@@ -3,13 +3,11 @@ description: Ambiente base para aplicações com pnpm e node js
 
 inputs:
   pnpm-version:
-    type: string
-    default: 8
+    default: "8"
     required: true
     description: Define pnpm version
   node-version:
-    type: string
-    default: 20
+    default: "20"
     required: true
     description: Define a versão do Node
 
@@ -30,4 +28,5 @@ runs:
         cache: "pnpm"
 
     - name: Install dependencies
+      shell: bash
       run: pnpm install --frozen-lockfile -r
