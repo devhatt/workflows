@@ -14,12 +14,12 @@ on:
         description: Define a versão do Node
 
 jobs:
-  test:
+  playwright-tests:
     timeout-minutes: 60
     runs-on: ubuntu-latest
     steps:
       - name: Setup Pnpm And Node
-        uses: ./github/actions/pnpm-setup.yml
+        uses: devhatt/workflows/.github/workflows/playwright-tests.yml@main
         with:
           pnpm-version: ${{inputs.pnpm-version}}
           node-version: ${{inputs.node-version}}
