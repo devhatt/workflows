@@ -43,7 +43,7 @@ jobs:
         uses: actions/checkout@v4.1.7
 
       - name: Show Assigness
-        run: echo ${{contains(github.event.pull_request.assignees, [])}}
+        run: echo ${{contains(github.event.pull_request.assignees, '[]')}}
 
       - name: Assigna o criador do pr no proprio pr
         run: gh pr edit ${{ github.event.pull_request.number }} --add-assignee ${{ github.actor }}
