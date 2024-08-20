@@ -49,6 +49,7 @@ jobs:
         shell: bash
 
       - name: Checkout
+        if: ${{ steps.check.outputs.assignees == '0' }}
         uses: actions/checkout@v4.1.7
 
       - name: Assigna o criador do pr no proprio pr
