@@ -37,17 +37,22 @@ jobs:
 
   assing-contributor-on-pr:
     runs-on: ubuntu-latest
-    if: ${{github.event_name == 'pull_request' && github.event.pull_request.assignees.length == 0}}
+    if: ${{github.event_name == 'pull_request'}}
+
     steps:
-      - name: test conditio
+      - name: Check assignees
+        id: check
         run: |
-          echo ${{github.event.pull_request.assignees.length == 0}}
-          ${{github.event_name == 'pull_request' && github.event.pull_request.assignees.length == 0}}
+          ASSIGNEES=$(curl -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+            "https://api.github.com/repos/${{ github.repository }}/pulls/${{ github.event.pull_request.number }}/assignees" | jq length)
+          echo "::set-output name=assignees::$ASSIGNEES"
+        shell: bash
 
       - name: Checkout
         uses: actions/checkout@v4.1.7
 
       - name: Assigna o criador do pr no proprio pr
+        if: ${{ steps.check.outputs.assignees == '0' }}
         run: gh pr edit ${{ github.event.pull_request.number }} --add-assignee ${{ github.actor }}
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
