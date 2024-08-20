@@ -41,7 +41,7 @@ jobs:
     steps:
       - name: test conditio
         run: |
-          echo ${{github.event_name == 'pull_request' || github.event.pull_request.assignees.length == 0}}
+          echo ${{github.event.pull_request.assignees.length == 0}}
           ${{github.event_name == 'pull_request' && github.event.pull_request.assignees.length == 0}}
 
       - name: Checkout
