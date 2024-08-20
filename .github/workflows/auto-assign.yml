@@ -2,6 +2,7 @@ name: Auto-assign workflows
 
 on:
   workflow_call:
+  workflow_dispatch:
 
 jobs:
   assign-on-issue:
