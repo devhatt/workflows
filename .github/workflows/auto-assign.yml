@@ -37,13 +37,10 @@ jobs:
 
   assing-contributor-on-pr:
     runs-on: ubuntu-latest
-    if: ${{github.event_name == 'pull_request'}}
+    if: ${{github.event_name == 'pull_request' && github.event.pull_request.assignees.length == 0}}
     steps:
       - name: Checkout
         uses: actions/checkout@v4.1.7
-
-      - name: Show Assigness
-        run: echo ${{github.event.pull_request.assignees.length == 0 }}
 
       - name: Assigna o criador do pr no proprio pr
         run: gh pr edit ${{ github.event.pull_request.number }} --add-assignee ${{ github.actor }}
