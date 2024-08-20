@@ -40,7 +40,7 @@ jobs:
     if: ${{github.event_name == 'pull_request'}}
 
     steps:
-      - name: Check assignees
+      - name: Check if pr has assignee
         id: check
         run: |
           ASSIGNEES=$(curl -H "Authorization: token ${{secrets.PERSONAL_ACCESS_TOKEN}}" \
