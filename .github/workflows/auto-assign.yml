@@ -43,7 +43,7 @@ jobs:
       - name: Check assignees
         id: check
         run: |
-          ASSIGNEES=$(curl -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+          ASSIGNEES=$(curl -H "Authorization: token ${{secrets.PERSONAL_ACCESS_TOKEN}}" \
             "https://api.github.com/repos/${{ github.repository }}/pulls/${{ github.event.pull_request.number }}/assignees" | jq length)
           echo "::set-output name=assignees::$ASSIGNEES"
         shell: bash
