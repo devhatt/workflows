@@ -40,7 +40,7 @@ jobs:
     if: ${{github.event_name == 'pull_request' && github.event.pull_request.assignees.length == 0}}
     steps:
       - name: test conditio
-        uses: ${{github.event_name == 'pull_request' && github.event.pull_request.assignees.length == 0}}
+        run: ${{github.event_name == 'pull_request' && github.event.pull_request.assignees.length == 0}}
 
       - name: Checkout
         uses: actions/checkout@v4.1.7
