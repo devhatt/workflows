@@ -47,6 +47,8 @@ jobs:
 
           echo "assignees=$ASSIGNEES" >> $GITHUB_ENV        
           shell: bash
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Checkout
         if: steps.check.outputs.assignees == 0
