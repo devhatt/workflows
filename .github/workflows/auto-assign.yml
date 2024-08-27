@@ -44,7 +44,7 @@ jobs:
         id: check
         run: |
           ASSIGNEES=$(curl -H "Authorization: token ${{secrets.PERSONAL_ACCESS_TOKEN}}" \
-            "https://api.github.com/repos/${{ github.repository }}/pulls/${{ github.event.pull_request.number }}/assignees" | jq length)
+            "https://api.github.com/repos/${{ github.repository }}/pulls/${{ github.event.pull_request.number }}/assignees" | jq '.total_count')
           echo "::set-output name=assignees::$ASSIGNEES"
         shell: bash
 
