@@ -45,15 +45,15 @@ jobs:
         run: |
           ASSIGNEES=$(curl -H "Authorization: token ${{secrets.PERSONAL_ACCESS_TOKEN}}" \
             "https://api.github.com/repos/${{ github.repository }}/pulls/${{ github.event.pull_request.number }}/assignees" | jq '.total_count')
-          echo "::set-output name=assignees::$ASSIGNEES"
+          echo "assignees=$ASSIGNEES" >> $GITHUB_ENV
         shell: bash
 
       - name: Checkout
-        if: ${{ steps.check.outputs.assignees == '0' }}
+        if: ${{ $ASSIGNEES == '0' }}
         uses: actions/checkout@v4.1.7
 
       - name: Assigna o criador do pr no proprio pr
-        if: ${{ steps.check.outputs.assignees == '0' }}
+        if: ${{ $ASSIGNEES == '0' }}
         run: gh pr edit ${{ github.event.pull_request.number }} --add-assignee ${{ github.actor }}
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
