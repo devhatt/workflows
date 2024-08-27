@@ -48,10 +48,10 @@ jobs:
         run: |
           ASSIGNEES=$(gh pr view ${{ github.event.pull_request.number }} --json assignees --jq '.assignees | length')
 
-          echo "assignees=$ASSIGNEES" >> $GITHUB_ENV        
-          shell: bash
+          echo "assignees=$ASSIGNEES" >> $GITHUB_ENV
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        shell: bash
 
       - name: Assigna o criador do pr no proprio pr
         if: steps.check.outputs.assignees == 0
