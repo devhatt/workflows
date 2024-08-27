@@ -43,7 +43,9 @@ jobs:
       - name: Check if pr has assignee
         id: check
         run: |
-          ASSIGNEES=$(curl -H "Authorization: token ${{secrets.PERSONAL_ACCESS_TOKEN}}" \
+          ASSIGNEES=$(curl -H "Authorization: Bearer ${{secrets.PERSONAL_ACCESS_TOKEN}}" \
+            -H "Accept: application/vnd.github+json" \
+            -H "X-GitHub-Api-Version: 2022-11-28" \
             "https://api.github.com/repos/${{ github.repository }}/pulls/${{ github.event.pull_request.number }}/assignees" | jq '.total_count')
           echo "assignees=$ASSIGNEES" >> $GITHUB_ENV
         shell: bash
