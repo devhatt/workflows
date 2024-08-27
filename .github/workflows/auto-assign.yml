@@ -54,7 +54,7 @@ jobs:
         shell: bash
 
       - name: Assigna o criador do pr no proprio pr
-        if: steps.check.outputs.assignees == 0
+        if: ${{env.assignees == 0}}
         run: gh pr edit ${{ github.event.pull_request.number }} --add-assignee ${{ github.actor }}
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
