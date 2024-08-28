@@ -1,0 +1,26 @@
+name: GO Setup
+description: Ambiente base para aplicações com golang
+
+inputs:
+  golang-version:
+    default: "1.21"
+    required: true
+    description: Define go version
+
+runs:
+  using: "composite"
+  steps:
+    - uses: actions/checkout@v4
+
+    - name: Set up Go
+      uses: actions/setup-go@v4
+      with:
+        go-version: ${{ inputs.golang-version }}
+
+    - name: Create .env
+      shell: bash
+      run: cp .env.example .env
+
+    - name: Install dependencies
+      shell: bash
+      run: go mod tidy
